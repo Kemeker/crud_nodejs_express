@@ -14,5 +14,5 @@ app.use(rotas)
 
 // defina a porta que o servidor vai rodar
 app.listen(3000, () =>{
-    consle.log("servidor rodando na porta 3000")
+    console.log("servidor rodando na porta 3000")
 })
