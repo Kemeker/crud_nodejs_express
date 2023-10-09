@@ -52,5 +52,8 @@ function alterarAluno(req, res){
         // devolvendo a resposta de erro ao cliente
         return res.status(400).json({mensagem: "Todos os campos devem ser preenchidos"})
 
-    const email    
+    //    
+    const emailExistente = aluno.find((aluno)=> aluno.email === email && aluno.id !== Number(id))
+    
+    // verificando se email ja existe
     }
