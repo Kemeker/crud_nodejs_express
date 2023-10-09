@@ -1,7 +1,7 @@
-// importando o express
-import express = require("express")
-import {alunos} = require("./db.js")
-const {rotas} = require("./rotas.js")
+// importando os modulos 
+const {alunos} = require("./db")
+const {rotas} = require("./rotas")
+const express = require('express')
 
 // executando express
 const app = express()
