@@ -1,11 +1,11 @@
 let {alunos} = require("../db.js")
 
-function buscarAlunos(req, res) {
+function buscarAluno(req, res) {
     return res.status(200).json(alunos)
     
 }
 
-function criarAlunos(req, res){
+function criarAluno(req, res){
     // pegando os dados no body
     const {nome, email, senha} = req.body
 
@@ -61,18 +61,51 @@ function alterarAluno(req, res){
         return res.status(400).json({mensagem: "Email ja existe"})
     }
 
-    // alterando aluno
-    alunos = alunos.map((aluno)=> {
-        if (Number(id) === alunos.id){
-            return{
-                id: Number(id), nome, email, senha,
-            } else {
-                return aluno
-
+    // alterando o aluno
+    alunos = alunos.map((aluno) => {
+        if (Number(id) === aluno.id) {
+            return {
+                id: Number(id),
+                nome,
+                email,
+                senha,
             }
-
-        }
-    })
-
-
+    } else {
+      return aluno;
     }
+  })
+
+  
+
+    // devolvendo resposta de sucesso
+    return res.status(204).send()
+}
+
+function deleteAluno(req, res){
+    // pegando o id dos parametros
+    const {id} = req.params
+
+    //buscando o index ( indice) do aluno
+    const alunoIndex = aluno.findIndex((aluno)=> aluno.id === Number(id))
+
+    // verificando se o aluno existe
+    if (alunoIndex == -1){
+        // devolvendo resposta de erro ao cliente
+        return res.status(400).json({mensagem: "Aluno nao encontrado"})
+    }
+
+    // removendo aluno de alunos
+    aluno.splice(alunoIndex, 1)
+
+    //devolvendo a resposta de sucesso
+    return res.status(204).send()
+}
+
+// exportando as funçoes controladoras
+
+module.export = {
+    buscarAluno
+    criarAluno
+    alterarAluno
+    deleteAluno
+}
